@@ -1,0 +1,142 @@
+:root {
+    --primary: #00C3D0;
+    --text-white: #ffffff;
+    --text-dark: #333333;
+    --bg-blob: #D9D9D9;
+    --radius: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--primary);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    color: var(--text-white);
+}
+
+/* Background Decor */
+.blob {
+    position: absolute;
+    background-color: var(--bg-blob);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.blob-top {
+    width: 100px;
+    height: 100px;
+    top: -30px;
+    right: -30px;
+}
+
+.blob-bottom {
+    width: 120px;
+    height: 120px;
+    bottom: -40px;
+    left: -40px;
+}
+
+/* Card Component */
+.card {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+input {
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--text-white);
+    font-size: 1rem;
+    color: var(--text-dark);
+    outline: none;
+    transition: box-shadow 0.2s;
+}
+
+input:focus {
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.text-right {
+    text-align: right;
+    margin-top: -10px;
+    margin-bottom: 2rem;
+}
+
+a {
+    color: var(--text-white);
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+.link-small {
+    font-size: 0.85rem;
+}
+
+.btn-primary {
+    width: 70%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--text-white);
+    color: var(--text-dark); /* Mengikuti warna teks input agar kontras */
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    transition: transform 0.1s, background-color 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    background-color: #f8f8f8;
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.footer-link {
+    position: absolute;
+    bottom: 2rem;
+    font-size: 0.9rem;
+    z-index: 10;
+}
