@@ -3,7 +3,11 @@
     --text-white: #ffffff;
     --text-dark: #333333;
     --bg-blob: #D9D9D9;
-    --radius: 12px;
+}
+
+/* --- MENGAKTIFKAN ANIMASI ANTAR HALAMAN (Magic!) --- */
+@view-transition {
+    navigation: auto;
 }
 
 * {
@@ -24,7 +28,7 @@ body {
     color: var(--text-white);
 }
 
-/* Background Decor */
+/* --- SETUP LINGKARAN (BLOB) --- */
 .blob {
     position: absolute;
     background-color: var(--bg-blob);
@@ -32,21 +36,47 @@ body {
     z-index: 1;
 }
 
-.blob-top {
+/* Blob 1: Lingkaran Bagian Atas */
+.blob-one {
     width: 100px;
     height: 100px;
+    /* Memberi nama identitas agar browser tahu ini benda yang sama */
+    view-transition-name: blob-one; 
+}
+
+/* Blob 2: Lingkaran Bagian Bawah */
+.blob-two {
+    width: 120px;
+    height: 120px;
+    /* Memberi nama identitas agar browser tahu ini benda yang sama */
+    view-transition-name: blob-two; 
+}
+
+/* --- POSISI DI HALAMAN LOGIN (Frame 2) --- */
+/* Sesuai SVG Login: Kanan Atas & Kiri Bawah */
+body.login-page .blob-one {
     top: -30px;
     right: -30px;
 }
 
-.blob-bottom {
-    width: 120px;
-    height: 120px;
+body.login-page .blob-two {
     bottom: -40px;
     left: -40px;
 }
 
-/* Card Component */
+/* --- POSISI DI HALAMAN SIGN UP (Frame 3) --- */
+/* Sesuai SVG Sign Up kamu: Kiri Atas (cx=14) & Kanan Bawah (cx=399) */
+body.signup-page .blob-one {
+    top: -20px;
+    left: -20px; /* Pindah ke KIRI */
+}
+
+body.signup-page .blob-two {
+    bottom: -30px;
+    right: -30px; /* Pindah ke KANAN */
+}
+
+/* --- CARD & FORM STYLE --- */
 .card {
     position: relative;
     z-index: 10;
@@ -54,6 +84,8 @@ body {
     max-width: 400px;
     padding: 2rem;
     text-align: center;
+    /* Efek fade saat transisi halaman */
+    view-transition-name: card-content;
 }
 
 h1 {
@@ -83,7 +115,6 @@ input {
     font-size: 1rem;
     color: var(--text-dark);
     outline: none;
-    transition: box-shadow 0.2s;
 }
 
 input:focus {
@@ -99,39 +130,30 @@ input:focus {
 a {
     color: var(--text-white);
     text-decoration: none;
-    transition: opacity 0.2s;
+    font-size: 0.9rem;
 }
 
 a:hover {
-    opacity: 0.8;
     text-decoration: underline;
 }
 
-.link-small {
-    font-size: 0.85rem;
-}
-
 .btn-primary {
-    width: 70%;
+    width: 60%;
     padding: 12px;
     border: none;
     border-radius: 8px;
     background-color: var(--text-white);
-    color: var(--text-dark); /* Mengikuti warna teks input agar kontras */
+    color: var(--text-dark);
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
+    margin-top: 1rem;
     margin-bottom: 2rem;
-    transition: transform 0.1s, background-color 0.2s;
+    transition: transform 0.1s;
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
-    background-color: #f8f8f8;
-}
-
-.btn-primary:active {
-    transform: translateY(0);
+    transform: scale(1.05);
 }
 
 .footer-link {
@@ -139,4 +161,6 @@ a:hover {
     bottom: 2rem;
     font-size: 0.9rem;
     z-index: 10;
+    width: 100%;
+    text-align: center;
 }
