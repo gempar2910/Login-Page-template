@@ -5,11 +5,21 @@
     --bg-blob: #D9D9D9;
 }
 
-/* --- MENGAKTIFKAN ANIMASI ANTAR HALAMAN (Magic!) --- */
+/* --- View Transitions Setup --- */
 @view-transition {
     navigation: auto;
 }
 
+::view-transition-group(*) {
+    animation-duration: 0.6s;
+    animation-timing-function: ease-in-out;
+}
+
+::view-transition-group(card-content) {
+    animation-duration: 0.7s;
+}
+
+/* --- Base Styles --- */
 * {
     margin: 0;
     padding: 0;
@@ -28,7 +38,7 @@ body {
     color: var(--text-white);
 }
 
-/* --- SETUP LINGKARAN (BLOB) --- */
+/* --- Background Blobs --- */
 .blob {
     position: absolute;
     background-color: var(--bg-blob);
@@ -36,24 +46,19 @@ body {
     z-index: 1;
 }
 
-/* Blob 1: Lingkaran Bagian Atas */
 .blob-one {
     width: 100px;
     height: 100px;
-    /* Memberi nama identitas agar browser tahu ini benda yang sama */
-    view-transition-name: blob-one; 
+    view-transition-name: blob-one;
 }
 
-/* Blob 2: Lingkaran Bagian Bawah */
 .blob-two {
     width: 120px;
     height: 120px;
-    /* Memberi nama identitas agar browser tahu ini benda yang sama */
-    view-transition-name: blob-two; 
+    view-transition-name: blob-two;
 }
 
-/* --- POSISI DI HALAMAN LOGIN (Frame 2) --- */
-/* Sesuai SVG Login: Kanan Atas & Kiri Bawah */
+/* Page Specific: Login Positions */
 body.login-page .blob-one {
     top: -30px;
     right: -30px;
@@ -64,19 +69,18 @@ body.login-page .blob-two {
     left: -40px;
 }
 
-/* --- POSISI DI HALAMAN SIGN UP (Frame 3) --- */
-/* Sesuai SVG Sign Up kamu: Kiri Atas (cx=14) & Kanan Bawah (cx=399) */
+/* Page Specific: Signup Positions */
 body.signup-page .blob-one {
     top: -20px;
-    left: -20px; /* Pindah ke KIRI */
+    left: -20px;
 }
 
 body.signup-page .blob-two {
     bottom: -30px;
-    right: -30px; /* Pindah ke KANAN */
+    right: -30px;
 }
 
-/* --- CARD & FORM STYLE --- */
+/* --- Components: Card --- */
 .card {
     position: relative;
     z-index: 10;
@@ -84,7 +88,6 @@ body.signup-page .blob-two {
     max-width: 400px;
     padding: 2rem;
     text-align: center;
-    /* Efek fade saat transisi halaman */
     view-transition-name: card-content;
 }
 
@@ -94,6 +97,7 @@ h1 {
     letter-spacing: 0.5px;
 }
 
+/* --- Components: Forms --- */
 .form-group {
     margin-bottom: 1.25rem;
     text-align: left;
@@ -115,28 +119,19 @@ input {
     font-size: 1rem;
     color: var(--text-dark);
     outline: none;
+    transition: all 0.3s ease;
 }
 
 input:focus {
     box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
 }
 
-.text-right {
-    text-align: right;
-    margin-top: -10px;
-    margin-bottom: 2rem;
+input:hover {
+    background-color: #f0f8ff;
+    border: 1px solid var(--primary);
 }
 
-a {
-    color: var(--text-white);
-    text-decoration: none;
-    font-size: 0.9rem;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
+/* --- Components: Buttons & Links --- */
 .btn-primary {
     width: 60%;
     padding: 12px;
@@ -156,6 +151,22 @@ a:hover {
     transform: scale(1.05);
 }
 
+.text-right {
+    text-align: right;
+    margin-top: -10px;
+    margin-bottom: 2rem;
+}
+
+a {
+    color: var(--text-white);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 .footer-link {
     position: absolute;
     bottom: 2rem;
@@ -165,29 +176,14 @@ a:hover {
     text-align: center;
 }
 
-::view-transition-group(*) {
-    /* 600ms = 0.6 detik (Sesuai Figma) */
-    /* ease-in-out = Awal pelan, tengah cepat, akhir pelan (Sesuai Figma) */
-    animation-duration: 0.6s;
-    animation-timing-function: ease-in-out;
-}
-
-::view-transition-group(card-content) {
-    animation-duration: 0.7s;
-}
-
+/* --- Responsive Design --- */
 @media (max-width: 480px) {
     .card {
-        width: 90%; 
+        width: 90%;
         padding: 1.5rem;
     }
 
     h1 {
-        font-size: 1.5rem; 
+        font-size: 1.5rem;
     }
-}
-
-input:hover {
-    background-color: #f0f8ff; 
-    border: 1px solid var(--primary); 
 }
